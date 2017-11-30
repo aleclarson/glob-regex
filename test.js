@@ -13,6 +13,14 @@ const tests = {
     '.js': false,
     '': false,
   },
+  '*/*.js': {
+    'a.js': false,
+    'a/b.js': true,
+    'a/b/c.js': false,
+    'a/b.css': false,
+    '.js': false,
+    '': false,
+  },
   '**.js': {
     'a.js': true,
     'bc.js': true,
