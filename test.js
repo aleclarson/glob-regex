@@ -78,3 +78,10 @@ test('the glob is wrapped with ^ and $', (t) => {
   t.assert(!re.test('a/b.js'))
   t.assert(!re.test('a.jsx'))
 })
+
+test('an array can be passed', (t) => {
+  const re = globRegex(['*.js', '*.css'])
+  t.assert(!re.test('a.jsx'))
+  t.assert(re.test('a.js'))
+  t.assert(re.test('b.css'))
+})
