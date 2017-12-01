@@ -1,5 +1,5 @@
 
-# glob-regex v0.1.0
+# glob-regex v0.1.1
 
 Convert a glob to a `RegExp` object.
 
