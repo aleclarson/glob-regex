@@ -1,4 +1,4 @@
 // @flow
 
-module.exports = (require('./index'): (string) => RegExp)
+module.exports = (require('./index'): (string|string[]) => RegExp)
 
