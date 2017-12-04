@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // @flow
 
-const {test} = require('testpass')
+const {test, group} = require('testpass')
 
 const globRegex = require('.')
 
@@ -84,4 +84,36 @@ test('an array can be passed', (t) => {
   t.assert(!re.test('a.jsx'))
   t.assert(re.test('a.js'))
   t.assert(re.test('b.css'))
+})
+
+// [0] the input
+group('capture groups:', () => {
+
+  // [1] the filename
+  test('*.js', (t) => {
+    const re = globRegex('*.js')
+    cap(t, re, 'a.js', 'a')
+  })
+
+  // [1] the directory (or null)
+  // [2] the filename
+  test('**.js', (t) => {
+    const re = globRegex('**.js')
+    cap(t, re, 'a.js', undefined, 'a')
+    cap(t, re, 'a/b.js', 'a/', 'b')
+  })
+
+  // [1] the parent of __tests__
+  // [2] the filename
+  test('**/__tests__/*.js', (t) => {
+    const re = globRegex('**/__tests__/*.js')
+    cap(t, re, '__tests__/a.js', undefined, 'a')
+    cap(t, re, 'a/b/__tests__/c.js', 'a/b/', 'c')
+  })
+
+  function cap(t, re, input) {
+    const expected = [].slice.call(arguments, 2)
+    re.lastIndex = 0
+    t.eq(re.exec(input), expected)
+  }
 })
