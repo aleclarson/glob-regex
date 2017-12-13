@@ -111,7 +111,7 @@ group('capture groups:', () => {
     cap(t, re, 'a/b/__tests__/c.js', 'a/b/', 'c')
   })
 
-  function cap(t, re, input) {
+  function cap(t, re, input, /*:: ...expected: string[] */) {
     const expected = [].slice.call(arguments, 2)
     re.lastIndex = 0
     t.eq(re.exec(input), expected)
