@@ -8,6 +8,9 @@ function globRegex(glob) {
   if (Array.isArray(glob)) {
     glob = '((' + glob.join(')|(') + '))'
   }
+  else if (glob.endsWith('**')) {
+    glob = glob.slice(0, -2) + '(.*)'
+  }
 
   const pattern = glob
     .replace(dotRE, '\\.')
