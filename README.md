@@ -37,3 +37,8 @@ re = globRegex('*.(js|css)')
 re.test('a.js') // => true
 re.test('a.css') // => true
 ```
+
+**NOTE:** It's not recommended to use `globRegex(array)` if you need
+the `exec` method, since the result will be difficult to make use of.
+Using the `test` method works great, though!
+
