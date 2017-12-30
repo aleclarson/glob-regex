@@ -6,18 +6,21 @@ const globDirsRE = /\*\*\//g
 const globNamesRE = /\*/g
 
 function globRegex(glob) {
-  if (Array.isArray(glob)) {
-    glob = '((' + glob.join(')|(') + '))'
-  }
+  const source = Array.isArray(glob) ? join(glob) : convert(glob)
+  return new RegExp('^' + source + '$')
+}
 
-  const pattern = glob
+function convert(glob) {
+  return glob
     .replace(dotRE, '\\.')
     .replace(globDirsRE, '(.+/)?')
     .replace(globEndRE, '(.+)')
     .replace(globAnyRE, '(.+/)?([^/]+)')
     .replace(globNamesRE, '([^/]+)')
+}
 
-  return new RegExp('^' + pattern + '$')
+function join(globs) {
+  return '((' + globs.map(convert).join(')|(') + '))'
 }
 
 module.exports = globRegex
