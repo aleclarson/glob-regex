@@ -6,6 +6,6 @@
     "url": "https://github.com/aleclarson/glob-regex.git"
   },
   "devDependencies": {
-    "testpass": "0.0.x"
+    "testpass": "^0.5.1"
   }
 }
