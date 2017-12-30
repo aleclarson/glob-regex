@@ -1,6 +1,7 @@
 
 const dotRE = /\./g
-const globAllRE = /\*\*/g
+const globAnyRE = /\*\*/g
+const globEndRE = /\*\*$/g
 const globDirsRE = /\*\*\//g
 const globNamesRE = /\*/g
 
@@ -8,14 +9,12 @@ function globRegex(glob) {
   if (Array.isArray(glob)) {
     glob = '((' + glob.join(')|(') + '))'
   }
-  else if (glob.endsWith('**')) {
-    glob = glob.slice(0, -2) + '(.*)'
-  }
 
   const pattern = glob
     .replace(dotRE, '\\.')
     .replace(globDirsRE, '(.+/)?')
-    .replace(globAllRE, '(.+/)?([^/]+\/?)')
+    .replace(globEndRE, '(.+)?')
+    .replace(globAnyRE, '(.+/)?([^/]+\/?)')
     .replace(globNamesRE, '([^/]+)')
 
   return new RegExp('^' + pattern + '$')
