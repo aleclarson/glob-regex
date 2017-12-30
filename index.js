@@ -14,7 +14,7 @@ function globRegex(glob) {
     .replace(dotRE, '\\.')
     .replace(globDirsRE, '(.+/)?')
     .replace(globEndRE, '(.+)?')
-    .replace(globAnyRE, '(.+/)?([^/]+\/?)')
+    .replace(globAnyRE, '(.+/)?([^/]+)')
     .replace(globNamesRE, '([^/]+)')
 
   return new RegExp('^' + pattern + '$')
