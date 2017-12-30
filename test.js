@@ -84,7 +84,7 @@ test('the glob is wrapped with ^ and $', (t) => {
 
 test('trailing ** is simplified', (t) => {
   const re = globRegex('a/**')
-  t.eq(re.source, '^a\\/(.+)?$')
+  t.eq(re.source, '^a\\/(.+)$')
 })
 
 test('an array can be passed', (t) => {
