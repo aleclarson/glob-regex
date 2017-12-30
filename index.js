@@ -13,7 +13,7 @@ function globRegex(glob) {
   const pattern = glob
     .replace(dotRE, '\\.')
     .replace(globDirsRE, '(.+/)?')
-    .replace(globEndRE, '(.+)?')
+    .replace(globEndRE, '(.+)')
     .replace(globAnyRE, '(.+/)?([^/]+)')
     .replace(globNamesRE, '([^/]+)')
 
