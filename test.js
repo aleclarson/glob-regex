@@ -10,6 +10,7 @@ const tests = {
     'a.js': true,
     'bc.js': true,
     'a.css': false,
+    'a/b.js': false,
     '.js': false,
     '': false,
   },
@@ -28,6 +29,8 @@ const tests = {
     'a/b/c.js': true,
     'a/b/c.css': false,
     'a/b/c': false,
+    'a/.js': false,
+    '/a.js': false,
     '.js': false,
     '': false,
   },
@@ -79,6 +82,11 @@ test('the glob is wrapped with ^ and $', (t) => {
   t.assert(!re.test('a.jsx'))
 })
 
+test('trailing ** is simplified', (t) => {
+  const re = globRegex('a/**')
+  t.eq(re.source, '^a\\/(.+)?$')
+})
+
 test('an array can be passed', (t) => {
   const re = globRegex(['*.js', '*.css'])
   t.assert(!re.test('a.jsx'))
@@ -117,3 +125,4 @@ group('capture groups:', () => {
     t.eq(re.exec(input), expected)
   }
 })
+
