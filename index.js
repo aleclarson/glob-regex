@@ -31,4 +31,5 @@ function globRegex(glob) {
   return new RegExp('^' + (Array.isArray(glob) ? join : replace)(glob) + '$')
 }
 
+globRegex.replace = replace
 module.exports = globRegex
