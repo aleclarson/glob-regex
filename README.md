@@ -38,6 +38,8 @@ re.test('a.js') // => true
 re.test('a.css') // => true
 ```
 
+Use `globRegex.replace()` to transform a glob into a RegExp-compatible string.
+
 **NOTE:** It's not recommended to use `globRegex(array)` if you need
 the `exec` method, since the result will be difficult to make use of.
 Using the `test` method works great, though!
