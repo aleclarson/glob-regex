@@ -1,26 +1,34 @@
 
-const dotRE = /\./g
-const globAnyRE = /\*\*/g
-const globEndRE = /\*\*$/g
-const globDirsRE = /\*\*\//g
-const globNamesRE = /\*/g
+var dotRE = /\./g
+var dotPattern = '\\.'
 
-function globRegex(glob) {
-  const source = Array.isArray(glob) ? join(glob) : convert(glob)
-  return new RegExp('^' + source + '$')
+var restRE = /\*\*$/g
+var restPattern = '(.+)'
+
+var globRE = /(?:\*\*\/|\*\*|\*)/g
+var globPatterns = {
+  '*': '([^/]+)',        // no backslashes
+  '**': '(.+/)?([^/]+)', // short for "**/*"
+  '**/': '(.+/)?',       // one or more directories
 }
 
-function convert(glob) {
+function mapToPattern(str) {
+  return globPatterns[str]
+}
+
+function replace(glob) {
   return glob
-    .replace(dotRE, '\\.')
-    .replace(globDirsRE, '(.+/)?')
-    .replace(globEndRE, '(.+)')
-    .replace(globAnyRE, '(.+/)?([^/]+)')
-    .replace(globNamesRE, '([^/]+)')
+    .replace(dotRE, dotPattern)
+    .replace(restRE, restPattern)
+    .replace(globRE, mapToPattern)
 }
 
 function join(globs) {
-  return '((' + globs.map(convert).join(')|(') + '))'
+  return '((' + globs.map(replace).join(')|(') + '))'
+}
+
+function globRegex(glob) {
+  return new RegExp('^' + (Array.isArray(glob) ? join : replace)(glob) + '$')
 }
 
 module.exports = globRegex
