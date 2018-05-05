@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// @flow
 
 const {test, group} = require('testpass')
 
@@ -125,4 +124,3 @@ group('capture groups:', () => {
     t.eq(re.exec(input), expected)
   }
 })
-
