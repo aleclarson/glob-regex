@@ -32,4 +32,5 @@ function globRegex(glob) {
 }
 
 globRegex.replace = replace
+Object.defineProperty(globRegex, 'default', { value: globRegex })
 module.exports = globRegex
