@@ -7,6 +7,7 @@ Convert a glob to a `RegExp` object.
 - `*` and `**` are replaced
 - Always start with `^` and end with `$`
 - All `RegExp` syntax is valid
+- Path separators are auto-escaped by `new RegExp`
 
 ```js
 const globRegex = require('glob-regex')
