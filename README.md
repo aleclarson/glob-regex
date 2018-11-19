@@ -1,5 +1,9 @@
+# glob-regex
 
-# glob-regex v0.3.1
+[![npm](https://img.shields.io/npm/v/glob-regex.svg)](https://www.npmjs.com/package/glob-regex)
+[![Bundle size](https://badgen.net/bundlephobia/min/glob-regex)](https://bundlephobia.com/result?p=glob-regex)
+[![Install size](https://packagephobia.now.sh/badge?p=glob-regex)](https://packagephobia.now.sh/result?p=glob-regex)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/alecdotbiz)
 
 Convert a glob to a `RegExp` object.
 
