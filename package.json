@@ -1,6 +1,6 @@
 {
   "name": "glob-regex",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Tiny glob->regex converter",
   "repository": {
     "type": "git",
