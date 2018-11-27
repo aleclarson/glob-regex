@@ -1,6 +1,7 @@
 {
   "name": "glob-regex",
   "version": "0.3.2",
+  "license": "MIT",
   "description": "Tiny glob->regex converter",
   "repository": {
     "type": "git",
